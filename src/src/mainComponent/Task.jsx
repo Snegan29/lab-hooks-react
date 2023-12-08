@@ -5,7 +5,7 @@ import { ToggleTheme } from "../App";
 function UseContext(){
     const initialValue = 0
     const [like,setLike]=useState(initialValue)
-    const [para, setpara] = useState(false)
+    const [para, setPara] = useState(false)
   const theme = useContext(ToggleTheme);
   const themeStyle = {
     backgroundColor: theme?"black":"red",
@@ -28,15 +28,17 @@ function UseContext(){
     setLike(initialValue)
   }
 
-  const showPara = ()=>{
-    setpara(!para)
-    if(!para){
-        alert("Paragraph will be visible.")
+  useEffect(() => {
+    if (!para) {
+      alert('Paragraph is closing.');
     } else {
-        alert("Paragraph is closing.")
+      alert('Paragraph will be visible.');
     }
-  }
- 
+  }, [para]);
+
+  const showPara = () => {
+    setPara(!para);
+  };
 
   return(
     <div style={themeStyle}>
